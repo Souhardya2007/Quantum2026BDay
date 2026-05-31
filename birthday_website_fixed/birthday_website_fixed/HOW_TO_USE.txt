@@ -1,0 +1,26 @@
+╔═══════════════════════════════════════════════════════╗
+║         BIRTHDAY WEBSITE — HOW TO USE IT!            ║
+╠═══════════════════════════════════════════════════════╣
+║                                                       ║
+║  STEP 1 — Change the dates (IMPORTANT!)               ║
+║  Open index.html in any text editor.                  ║
+║  Find these two lines near the top of <script>:      ║
+║                                                       ║
+║    const BIRTHDAY  = new Date("June 1 2007 ...");    ║
+║    const BDAY_NEXT = new Date("June 1 2026 ...");    ║
+║                                                       ║
+║  Change "June 1 2007" to her ACTUAL birthdate.       ║
+║  Change "June 1 2026" to this year's birthday.       ║
+║                                                       ║
+║  STEP 2 — Add your photos                             ║
+║  Put photos inside the media/ folder.                 ║
+║  Name them: 1.jpg, 2.jpg, 3.jpg ... up to 17.jpg    ║
+║                                                       ║
+║  STEP 3 — Add the birthday song                       ║
+║  Put any birthday MP3 in media/ named: HBD.mp3       ║
+║                                                       ║
+║  STEP 4 — Open & enjoy!                               ║
+║  Just double-click index.html to open in browser.    ║
+║  No internet needed after first load (fonts need it) ║
+║                                                       ║
+╚═══════════════════════════════════════════════════════╝
