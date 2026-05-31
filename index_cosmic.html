@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,300&family=DM+Mono:ital,wght@0,300;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --void:#02040a; --deep:#060d1f; --nebula:#0d1a3a;
+  --star:#e8f4ff; --gold:#f5c842; --coral:#ff6b6b;
+  --violet:#b084ff; --cyan:#4ecdc4; --silver:#c8d8f0;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cormorant Garamond',serif;
+  background:var(--void); color:var(--star);
+  min-height:100vh; overflow-x:hidden;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpolygon points='10,1 12.5,8 19,8 13.5,12.5 16,19 10,15 4,19 6.5,12.5 1,8 7.5,8' fill='%23f5c842' opacity='.9'/%3E%3C/svg%3E") 10 10,default;
+}
+#cosmosCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+#auroraCanvas{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.45}
+
+/* CURTAIN */
+#curtain{position:fixed;inset:0;z-index:9999;background:var(--void);opacity:0;pointer-events:none;transition:opacity .6s cubic-bezier(.4,0,.2,1)}
+#curtain.show{opacity:1;pointer-events:all}
+
+/* SECTIONS */
+.sec{position:relative;z-index:2;min-height:100vh;display:none;flex-direction:column;justify-content:center;align-items:center;padding:2.5rem 1.5rem}
+.sec.vis{display:flex}
+
+/* NAV BAR */
+#navBar{
+  position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);
+  z-index:8000;display:none;gap:10px;align-items:center;
+  background:rgba(6,13,31,.8);border:1px solid rgba(245,200,66,.14);
+  border-radius:60px;padding:.6rem 1.4rem;backdrop-filter:blur(20px);
+}
+.nb{
+  position:relative;width:9px;height:9px;border-radius:50%;
+  border:none;cursor:pointer;transition:all .35s;outline:none;
+  background:rgba(200,216,240,.18);
+}
+.nb.on{background:var(--gold);box-shadow:0 0 14px var(--gold);transform:scale(1.6)}
+.nb.unlocked:not(.on){background:rgba(200,216,240,.45);cursor:pointer}
+.nb.locked{cursor:not-allowed !important;opacity:.18 !important}
+.nb-tip{
+  position:absolute;bottom:130%;left:50%;transform:translateX(-50%);
+  background:rgba(6,13,31,.95);border:1px solid rgba(245,200,66,.2);
+  color:var(--silver);font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:.78rem;letter-spacing:.04em;white-space:nowrap;
+  padding:.3rem .8rem;border-radius:8px;pointer-events:none;
+  opacity:0;transition:opacity .2s;
+}
+.nb:hover .nb-tip{opacity:1}
+
+/* ══════════ SEC 0 — INTRO ══════════ */
+#s0{background:radial-gradient(ellipse at 50% 40%,rgba(176,132,255,.09) 0%,transparent 70%),radial-gradient(ellipse at 80% 20%,rgba(78,205,196,.05) 0%,transparent 50%),var(--void)}
+.intro-core{display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;position:relative;z-index:3;max-width:680px}
+.orbit-ring{position:relative;width:210px;height:210px;margin:0 auto}
+.orbit-circle{position:absolute;inset:0;border:1px solid rgba(245,200,66,.2);border-radius:50%;animation:orbitSpin 18s linear infinite}
+.orbit-circle::before{content:'★';font-size:1rem;color:var(--gold);position:absolute;top:-9px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 0 8px var(--gold))}
+.orbit-circle:nth-child(2){inset:18px;animation-duration:12s;animation-direction:reverse;border-color:rgba(176,132,255,.2)}
+.orbit-circle:nth-child(2)::before{content:'✦';color:var(--violet);top:auto;bottom:-9px;filter:drop-shadow(0 0 8px var(--violet))}
+.orbit-circle:nth-child(3){inset:36px;animation-duration:8s;border-color:rgba(78,205,196,.2)}
+.orbit-circle:nth-child(3)::before{content:'◆';font-size:.7rem;color:var(--cyan);top:auto;bottom:-7px;left:auto;right:-7px;filter:drop-shadow(0 0 6px var(--cyan))}
+.orbit-centre{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.6rem;filter:drop-shadow(0 0 30px rgba(245,200,66,.6));animation:centrePulse 3s ease-in-out infinite}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+@keyframes centrePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.intro-super{font-family:'Italiana',serif;font-size:.85rem;letter-spacing:.55em;text-transform:uppercase;color:var(--violet);opacity:.75;animation:fadeUp 1s .3s both}
+.intro-title{font-family:'Bodoni Moda',serif;font-size:clamp(3.2rem,9vw,6.5rem);font-weight:700;line-height:.95;color:var(--star);text-shadow:0 0 80px rgba(245,200,66,.3),0 0 120px rgba(176,132,255,.15);animation:fadeUp 1.2s .5s both}
+.intro-title em{font-style:italic;font-weight:300;color:var(--gold);display:block;font-size:.72em}
+.intro-sub{font-style:italic;font-size:1.1rem;color:rgba(200,216,240,.65);letter-spacing:.08em;line-height:1.7;animation:fadeUp 1.2s .7s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.version-toggle{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(245,200,66,.2);border-radius:60px;padding:5px;gap:4px;backdrop-filter:blur(16px);animation:fadeUp 1.2s .9s both}
+.vtab{padding:.5rem 1.4rem;border-radius:50px;border:none;font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;letter-spacing:.05em;cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);color:rgba(200,216,240,.45);background:transparent}
+.vtab.on{background:linear-gradient(135deg,rgba(245,200,66,.25),rgba(176,132,255,.2));color:var(--gold);box-shadow:0 4px 20px rgba(245,200,66,.15)}
+.vtab:hover:not(.on){color:var(--silver)}
+.open-btn{font-family:'Italiana',serif;font-size:1.35rem;letter-spacing:.15em;background:none;color:var(--gold);cursor:pointer;padding:.9rem 3.2rem;border:1.5px solid rgba(245,200,66,.4);border-radius:60px;position:relative;overflow:hidden;transition:all .35s cubic-bezier(.34,1.56,.64,1);animation:fadeUp 1.2s 1.1s both}
+.open-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,200,66,.1),rgba(176,132,255,.08));opacity:0;transition:opacity .3s}
+.open-btn:hover{transform:scale(1.07) translateY(-4px);border-color:rgba(245,200,66,.7);box-shadow:0 0 40px rgba(245,200,66,.2),0 16px 40px rgba(0,0,0,.4)}
+.open-btn:hover::before{opacity:1}
+.open-btn:active{transform:scale(.96)}
+
+/* ══════════ SEC 1 — ZODIAC CONSTELLATION ══════════ */
+#s1{background:radial-gradient(ellipse at 30% 60%,rgba(176,132,255,.07) 0%,transparent 60%),var(--void);gap:0;padding-top:3rem;padding-bottom:3rem}
+.zodiac-wrap{display:flex;flex-direction:column;align-items:center;gap:1.6rem;max-width:860px;width:100%}
+.zodiac-header{text-align:center}
+.z-super{font-family:'Italiana',serif;font-size:.78rem;letter-spacing:.5em;text-transform:uppercase;color:var(--violet);opacity:.65;margin-bottom:.5rem}
+.z-sign-name{font-family:'Bodoni Moda',serif;font-size:clamp(2.4rem,6vw,4rem);font-style:italic;font-weight:300;color:var(--gold);text-shadow:0 0 50px rgba(245,200,66,.35);line-height:1}
+.z-dates{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.18em;color:rgba(78,205,196,.55);margin-top:.4rem}
+.zodiac-body{display:flex;gap:2.5rem;align-items:flex-start;flex-wrap:wrap;justify-content:center;width:100%}
+.zodiac-svg-wrap{position:relative;flex-shrink:0}
+#zodiacSvg{width:min(340px,90vw);height:min(340px,90vw);filter:drop-shadow(0 0 24px rgba(176,132,255,.25))}
+.z-connect-hint{font-style:italic;font-size:.82rem;color:rgba(176,132,255,.5);text-align:center;margin-top:.5rem;letter-spacing:.06em}
+.z-progress{width:min(340px,90vw);height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-top:.3rem}
+.z-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--violet),var(--cyan));transition:width .5s cubic-bezier(.34,1.56,.64,1)}
+.zodiac-info{flex:1;min-width:240px;max-width:380px;display:flex;flex-direction:column;gap:1.2rem}
+.z-trait-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.z-trait{font-style:italic;font-size:.85rem;color:var(--star);background:rgba(176,132,255,.08);border:1px solid rgba(176,132,255,.2);border-radius:50px;padding:.3rem .9rem;opacity:0;transform:translateY(8px);transition:all .4s}
+.z-trait.show{opacity:1;transform:translateY(0)}
+.z-fact{font-style:italic;font-size:1rem;line-height:1.7;color:rgba(200,216,240,.75);opacity:0;transition:opacity .6s}
+.z-fact.show{opacity:1}
+.z-fact strong{color:var(--gold);font-style:normal}
+.z-reveal-msg{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.2rem,3vw,1.7rem);color:var(--star);text-align:center;min-height:2.5rem;line-height:1.4;opacity:0;transition:opacity .5s}
+.z-reveal-msg.show{opacity:1}
+
+/* ══════════ SEC 2 — COUNTDOWN OBSERVATORY ══════════ */
+#s2{background:radial-gradient(ellipse at 50% 100%,rgba(78,205,196,.07) 0%,transparent 55%),var(--void);text-align:center;gap:1.5rem}
+.obs-title{font-family:'Italiana',serif;font-size:clamp(2.2rem,5vw,3.5rem);color:var(--star);letter-spacing:.1em}
+.obs-sub{font-style:italic;color:var(--cyan);opacity:.55;font-size:.9rem;letter-spacing:.2em}
+.cd-grid{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;margin-top:.5rem}
+.cdunit{background:rgba(13,26,58,.6);border:1px solid rgba(78,205,196,.2);border-radius:16px;padding:1.4rem 1.6rem;min-width:88px;text-align:center;backdrop-filter:blur(12px);box-shadow:0 8px 30px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.05);transition:transform .3s,box-shadow .3s}
+.cdunit:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(78,205,196,.15)}
+.cddig{font-family:'DM Mono',monospace;font-size:3rem;color:var(--cyan);display:block;text-shadow:0 0 24px rgba(78,205,196,.7)}
+.cdlbl{font-size:.6rem;letter-spacing:.22em;color:rgba(78,205,196,.45);margin-top:.4rem;text-transform:uppercase}
+/* Birthday arrival pulse */
+.bday-arrived{display:none;flex-direction:column;align-items:center;gap:1.2rem;margin-top:.5rem}
+.bday-arrived.show{display:flex;animation:fadeUp .8s forwards}
+.bday-glow-text{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.6rem,4vw,2.5rem);color:var(--gold);text-shadow:0 0 50px rgba(245,200,66,.7);animation:bdayPulse 2s ease-in-out infinite}
+@keyframes bdayPulse{0%,100%{text-shadow:0 0 30px rgba(245,200,66,.5)}50%{text-shadow:0 0 80px rgba(245,200,66,1),0 0 120px rgba(245,200,66,.4)}}
+/* Lock notice */
+.obs-lock-notice{
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  padding:1rem 2rem;border-radius:16px;
+  background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.2);
+  font-style:italic;color:rgba(200,216,240,.5);font-size:.9rem;
+  opacity:0;animation:fadeUp .6s forwards;
+}
+.obs-lock-notice .lock-icon{font-size:1.4rem;color:rgba(255,107,107,.5)}
+
+/* ══════════ SEC 3 — MEMORY NEBULA ══════════ */
+#s3{background:var(--void)}
+.neb-header{text-align:center;margin-bottom:2rem}
+.neb-title{font-family:'Italiana',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--star);letter-spacing:.1em}
+.neb-sub{font-style:italic;color:var(--silver);opacity:.5;font-size:.9rem;margin-top:.3rem}
+.nebula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:1rem;width:min(900px,95vw)}
+.nslot{aspect-ratio:1;border-radius:18px;border:1px dashed rgba(176,132,255,.28);background:rgba(13,26,58,.38);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;font-style:italic;font-size:.85rem;color:rgba(176,132,255,.45);cursor:pointer;overflow:hidden;position:relative;transition:all .4s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(8px)}
+.nslot:hover{border-color:rgba(176,132,255,.65);box-shadow:0 0 30px rgba(176,132,255,.18),0 14px 40px rgba(0,0,0,.4);transform:scale(1.04) translateY(-4px)}
+.nslot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:17px}
+.nslot .ngi{font-size:2.2rem;opacity:.38}
+.nslot .ngt{font-size:.76rem;text-align:center;padding:.3rem;opacity:.55}
+.nslot .ndel{position:absolute;top:6px;right:8px;z-index:5;background:rgba(2,4,10,.8);border:none;border-radius:50%;width:24px;height:24px;font-size:.78rem;cursor:pointer;display:none;align-items:center;justify-content:center;color:var(--star);transition:transform .2s}
+.nslot:hover .ndel{display:flex}
+.ndel:hover{background:var(--coral);transform:scale(1.2)}
+.nlb{position:fixed;inset:0;z-index:9500;background:rgba(2,4,10,.95);display:none;align-items:center;justify-content:center;backdrop-filter:blur(20px)}
+.nlb.open{display:flex}
+.nlb img{max-width:90vw;max-height:88vh;border-radius:16px;box-shadow:0 0 80px rgba(176,132,255,.2);animation:lbPop .4s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes lbPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.nlb-close{position:absolute;top:1.2rem;right:1.8rem;font-size:2rem;color:var(--violet);cursor:pointer;transition:transform .25s}
+.nlb-close:hover{transform:rotate(90deg) scale(1.3)}
+
+/* ══════════ SEC 4 — LOVE LETTER ══════════ */
+#s4{background:radial-gradient(ellipse at 70% 30%,rgba(245,200,66,.04) 0%,transparent 55%),var(--void)}
+.telescope-letter{max-width:680px;width:95%;background:rgba(13,26,58,.5);border:1px solid rgba(245,200,66,.15);border-radius:4px;padding:clamp(2rem,5vw,4rem) clamp(1.8rem,6vw,4.5rem);position:relative;backdrop-filter:blur(20px);box-shadow:0 0 80px rgba(245,200,66,.05),0 30px 80px rgba(0,0,0,.5);animation:paperSlide .9s cubic-bezier(.34,1.56,.64,1) forwards;opacity:0}
+@keyframes paperSlide{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.tl-coords{font-family:'DM Mono',monospace;font-size:.72rem;color:rgba(78,205,196,.4);letter-spacing:.12em;margin-bottom:1.8rem}
+.tl-sal{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:300;font-size:2.2rem;color:var(--gold);margin-bottom:1.4rem;text-shadow:0 0 30px rgba(245,200,66,.3)}
+.tl-body{font-size:1.1rem;line-height:2.1;color:rgba(200,216,240,.85);font-style:italic}
+.tl-body p+p{margin-top:1rem}
+.tl-sign{margin-top:2rem;text-align:right;font-family:'Bodoni Moda',serif;font-style:italic;font-weight:300;font-size:1.8rem;color:var(--gold);text-shadow:0 0 20px rgba(245,200,66,.3)}
+.tl-sign span{font-family:'DM Mono',monospace;font-size:.7rem;color:rgba(78,205,196,.4);display:block;margin-top:.2rem;font-style:normal;font-weight:300}
+.telescope-letter::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;background:repeating-linear-gradient(transparent,transparent 35px,rgba(78,205,196,.022) 35px,rgba(78,205,196,.022) 36px);border-radius:4px}
+
+/* ══════════ SEC 5 — WISHING STAR ══════════ */
+#s5{background:radial-gradient(ellipse at 50% 50%,rgba(255,107,107,.05) 0%,transparent 60%),var(--void);text-align:center;gap:2rem}
+#wishCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.wish-front{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:1.6rem}
+.wish-title{font-family:'Italiana',serif;font-size:clamp(2rem,5vw,3rem);color:var(--star);letter-spacing:.1em}
+.wish-sub{font-style:italic;color:var(--coral);opacity:.65;font-size:.92rem;letter-spacing:.1em}
+.wish-field-wrap{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.wish-input{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;background:rgba(13,26,58,.6);border:1px solid rgba(255,107,107,.3);border-radius:50px;padding:.8rem 1.8rem;color:var(--star);width:min(340px,80vw);outline:none;transition:border-color .3s,box-shadow .3s;backdrop-filter:blur(12px)}
+.wish-input::placeholder{color:rgba(200,216,240,.28)}
+.wish-input:focus{border-color:rgba(255,107,107,.65);box-shadow:0 0 20px rgba(255,107,107,.12)}
+.wish-btn{font-family:'Italiana',serif;font-size:1.1rem;letter-spacing:.1em;background:linear-gradient(135deg,rgba(255,107,107,.2),rgba(245,200,66,.15));border:1.5px solid rgba(255,107,107,.4);border-radius:50px;padding:.85rem 2rem;color:var(--coral);cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.wish-btn:hover{transform:scale(1.08) translateY(-3px);box-shadow:0 14px 35px rgba(255,107,107,.2);border-color:var(--coral)}
+.wishes-display{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;max-width:620px}
+.wish-tag{font-style:italic;font-size:.9rem;color:var(--star);background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2);border-radius:50px;padding:.4rem 1.1rem;animation:fadeUp .5s forwards;opacity:0}
+
+/* ══════════ SEC 6 — MUSIC PULSAR ══════════ */
+#s6{position:relative;background:radial-gradient(ellipse at 50% 50%,rgba(176,132,255,.08) 0%,transparent 55%),var(--void);text-align:center;gap:2rem;overflow:hidden}
+.pulsar-ring-wrap{position:relative;width:160px;height:160px;margin:0 auto;z-index:2}
+.pulsar-rings span{position:absolute;border-radius:50%;border:1px solid rgba(176,132,255,.2);inset:0;animation:pulsarWave 2.4s ease-out infinite;opacity:0}
+.pulsar-rings span:nth-child(2){animation-delay:.7s}
+.pulsar-rings span:nth-child(3){animation-delay:1.4s}
+@keyframes pulsarWave{0%{transform:scale(.6);opacity:.7;border-color:rgba(176,132,255,.5)}100%{transform:scale(2.2);opacity:0}}
+.play-orb{position:absolute;inset:20px;border-radius:50%;background:radial-gradient(135deg,rgba(176,132,255,.3),rgba(78,205,196,.15));border:1.5px solid rgba(176,132,255,.4);display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:transform .3s,box-shadow .3s;backdrop-filter:blur(10px);z-index:2}
+.play-orb:hover{transform:scale(1.12);box-shadow:0 0 40px rgba(176,132,255,.4)}
+.play-orb.playing{animation:orbGlow 1.6s ease-in-out infinite}
+@keyframes orbGlow{0%,100%{box-shadow:0 0 0 0 rgba(176,132,255,.5)}50%{box-shadow:0 0 0 20px rgba(176,132,255,0)}}
+.music-label{font-family:'Italiana',serif;font-size:1.2rem;letter-spacing:.12em;color:var(--violet);position:relative;z-index:2}
+.music-hint{font-style:italic;font-size:.85rem;color:rgba(176,132,255,.42);letter-spacing:.08em;position:relative;z-index:2}
+.lights-btn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;letter-spacing:.08em;background:transparent;border:1px solid rgba(176,132,255,.3);border-radius:50px;padding:.6rem 1.6rem;color:var(--violet);cursor:pointer;transition:all .3s;position:relative;z-index:2}
+.lights-btn:hover{background:rgba(176,132,255,.1);border-color:rgba(176,132,255,.4)}
+.bulb-row{display:flex;justify-content:space-around;align-items:flex-start;width:100%;position:absolute;top:0;pointer-events:none;z-index:1}
+.bulb{width:50px;height:50px;border-radius:50%;background:rgba(176,132,255,.05);box-shadow:0 0 0 0 rgba(176,132,255,0);transition:all .6s}
+.bulb.lit{background:rgba(176,132,255,.85);box-shadow:0 0 80px 40px rgba(176,132,255,.25),0 0 160px 90px rgba(78,205,196,.08)}
+.music-slideshow{position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:0;pointer-events:none;perspective:2000px;overflow:hidden}
+.ring3d{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(-320px) rotateX(18deg);animation:ringRotate 32s linear infinite paused}
+.ring3d.playing{animation-play-state:running}
+.panel{position:absolute;top:50%;left:50%;width:280px;height:360px;margin:-180px 0 0 -140px;border-radius:30px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:rgba(8,12,24,.45);box-shadow:0 0 90px rgba(78,205,196,.18);backface-visibility:hidden;transform-style:preserve-3d}
+.panel img{width:100%;height:100%;object-fit:cover}
+.panel::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 25%,rgba(0,0,0,.45) 100%);pointer-events:none}
+@keyframes ringRotate{from{transform:translateZ(-320px) rotateX(18deg) rotateY(0deg)}to{transform:translateZ(-320px) rotateX(18deg) rotateY(360deg)}}
+
+/* ══════════ SEC 7 — SUPERNOVA FINALE ══════════ */
+#s7{background:var(--void);overflow:hidden}
+#novaCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.nova-front{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;padding:2rem}
+.nova-big{font-family:'Bodoni Moda',serif;font-size:clamp(4rem,12vw,9rem);font-style:italic;font-weight:300;color:var(--gold);text-shadow:0 0 80px rgba(245,200,66,.9),0 0 160px rgba(245,200,66,.3);animation:floatBig 5s ease-in-out infinite;line-height:1}
+@keyframes floatBig{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.nova-name{font-family:'Italiana',serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--star);letter-spacing:.2em}
+.nova-msg{font-style:italic;font-size:1.15rem;color:rgba(200,216,240,.7);max-width:480px;line-height:1.9}
+.nova-from{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:300;font-size:1.1rem;color:var(--violet)}
+.restart-btn{font-family:'Italiana',serif;font-size:1rem;letter-spacing:.15em;background:transparent;border:1px solid rgba(200,216,240,.2);border-radius:50px;padding:.7rem 2rem;color:rgba(200,216,240,.45);cursor:pointer;transition:all .3s}
+.restart-btn:hover{border-color:rgba(200,216,240,.5);color:var(--star)}
+
+/* SHARED NEXT BUTTON */
+.cosmos-btn{font-family:'Italiana',serif;font-size:1.1rem;letter-spacing:.15em;background:linear-gradient(135deg,rgba(245,200,66,.15),rgba(176,132,255,.1));border:1.5px solid rgba(245,200,66,.3);border-radius:60px;padding:.85rem 2.8rem;color:var(--gold);cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(10px)}
+.cosmos-btn:hover{transform:scale(1.07) translateY(-4px);box-shadow:0 14px 40px rgba(245,200,66,.15);border-color:rgba(245,200,66,.6)}
+.cosmos-btn:active{transform:scale(.96)}
+.cosmos-btn.sec-btn{margin-top:1.5rem}
+
+/* LOCK TOAST */
+#lockToast{position:fixed;top:1.6rem;left:50%;transform:translateX(-50%) translateY(-120%);z-index:9000;background:rgba(6,13,31,.92);border:1px solid rgba(255,107,107,.3);border-radius:50px;padding:.55rem 1.6rem;font-style:italic;font-size:.88rem;color:rgba(255,107,107,.8);letter-spacing:.06em;backdrop-filter:blur(16px);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+#lockToast.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:480px){
+  .orbit-ring{width:160px;height:160px}.orbit-centre{font-size:2.8rem}
+  .cddig{font-size:2.2rem}.cdunit{min-width:68px;padding:1rem 1rem}
+  #navBar{bottom:1rem;padding:.45rem .8rem}
+  .zodiac-body{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmosCanvas"></canvas>
+<canvas id="auroraCanvas"></canvas>
+<div id="curtain"></div>
+<div id="lockToast">🔒 Complete the current page first</div>
+
+<!-- NAV BAR — 8 dots: 0=intro 1=zodiac 2=observatory 3=memories 4=letter 5=wish 6=music 7=finale -->
+<nav id="navBar">
+  <button class="nb locked" data-i="0"><span class="nb-tip">Intro</span></button>
+  <button class="nb locked" data-i="1"><span class="nb-tip">Your Stars</span></button>
+  <button class="nb locked" data-i="2"><span class="nb-tip">Observatory</span></button>
+  <button class="nb locked" data-i="3"><span class="nb-tip">Memories</span></button>
+  <button class="nb locked" data-i="4"><span class="nb-tip">Letter</span></button>
+  <button class="nb locked" data-i="5"><span class="nb-tip">Wishes</span></button>
+  <button class="nb locked" data-i="6"><span class="nb-tip">Music</span></button>
+  <button class="nb locked" data-i="7"><span class="nb-tip">Finale</span></button>
+</nav>
+
+<!-- ══ SEC 0 — INTRO ══ -->
+<section class="sec vis" id="s0">
+  <div class="intro-core">
+    <div class="orbit-ring">
+      <div class="orbit-circle"></div>
+      <div class="orbit-circle"></div>
+      <div class="orbit-circle"></div>
+      <div class="orbit-centre">🌟</div>
+    </div>
+    <p class="intro-super">A message from the universe</p>
+    <h1 class="intro-title">Happy<br><em>Birthday</em></h1>
+    <p class="intro-sub">The stars aligned on the day you were born.<br>They haven't stopped shining for you since.</p>
+    <div class="version-toggle">
+      <button class="vtab" onclick="switchVersion('classic')">🌸 Classic</button>
+      <button class="vtab on" onclick="switchVersion('cosmos')">✨ Cosmos</button>
+    </div>
+    <button class="open-btn" onclick="go(1)">Begin the Journey &nbsp;→</button>
+  </div>
+</section>
+
+<!-- ══ SEC 1 — ZODIAC CONSTELLATION ══ -->
+<section class="sec" id="s1">
+  <div class="zodiac-wrap">
+    <div class="zodiac-header">
+      <p class="z-super">✦ your birth constellation ✦</p>
+      <h2 class="z-sign-name" id="zSignName">—</h2>
+      <p class="z-dates" id="zDates">—</p>
+    </div>
+    <div class="zodiac-body">
+      <div class="zodiac-svg-wrap">
+        <svg id="zodiacSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="starGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+        </svg>
+        <p class="z-connect-hint" id="zHint">✦ Tap each star to connect your constellation</p>
+        <div class="z-progress"><div class="z-progress-fill" id="zProgFill"></div></div>
+      </div>
+      <div class="zodiac-info">
+        <p class="z-reveal-msg" id="zRevealMsg">Click the stars above to reveal your cosmic profile…</p>
+        <div class="z-trait-row" id="zTraitRow"></div>
+        <div class="z-fact" id="zFact1"></div>
+        <div class="z-fact" id="zFact2"></div>
+      </div>
+    </div>
+    <button class="cosmos-btn sec-btn" onclick="go(2)" id="zodiacNextBtn">Enter the Observatory →</button>
+  </div>
+</section>
+
+<!-- ══ SEC 2 — COUNTDOWN OBSERVATORY ══ -->
+<section class="sec" id="s2">
+  <h2 class="obs-title">Time Observatory</h2>
+  <p class="obs-sub">Counting every second until your next journey around the sun</p>
+  <div class="cd-grid">
+    <div class="cdunit"><span class="cddig" id="cdD">000</span><span class="cdlbl">Days</span></div>
+    <div class="cdunit"><span class="cddig" id="cdH">00</span><span class="cdlbl">Hours</span></div>
+    <div class="cdunit"><span class="cddig" id="cdM">00</span><span class="cdlbl">Minutes</span></div>
+    <div class="cdunit"><span class="cddig" id="cdS">00</span><span class="cdlbl">Seconds</span></div>
+  </div>
+  <div class="bday-arrived" id="bdayArrived">
+    <p class="bday-glow-text">🎂 It's your birthday! The stars celebrate you today! 🎂</p>
+    <button class="cosmos-btn" onclick="go(3)">Enter your Memory Nebula →</button>
+  </div>
+  <div class="obs-lock-notice" id="obsLockNotice" style="display:none">
+    <span class="lock-icon">⏳</span>
+    <span>The Memory Nebula unlocks when the countdown reaches zero…</span>
+    <span style="font-size:.78rem;color:rgba(78,205,196,.45)">Set your birthday above and come back on the day!</span>
+  </div>
+</section>
+
+<!-- ══ SEC 3 — MEMORY NEBULA ══ -->
+<section class="sec" id="s3">
+  <div class="neb-header">
+    <h2 class="neb-title">Memory Nebula</h2>
+    <p class="neb-sub">Every moment, preserved in light</p>
+  </div>
+  <div class="nebula-grid" id="nebGrid"></div>
+  <button class="cosmos-btn" style="margin-top:2rem" onclick="go(4)">Read the letter →</button>
+  <div class="nlb" id="nlb"><span class="nlb-close" onclick="closeNlb()">✕</span><img id="nlbImg" src="" alt=""></div>
+</section>
+
+<!-- ══ SEC 4 — LOVE LETTER ══ -->
+<section class="sec" id="s4">
+  <div class="telescope-letter">
+    <p class="tl-coords" id="tlCoords">COORDINATES · — · —</p>
+    <p class="tl-sal">Dearest You,</p>
+    <div class="tl-body">
+      <p>Somewhere between the birth of galaxies and the hush of a falling star, the universe decided to do something extraordinary — it made <em>you</em>.</p>
+      <p>Every constellation above us tonight is just a dot-to-dot waiting for you to connect it. Every nebula, every aurora, every quiet comet passing through the dark — they are all trying to spell out the same thing: how grateful the cosmos is that you exist.</p>
+      <p>You are the kind of person who makes ordinary moments feel like standing at the edge of the universe, breath held, heart full. And on this, your birthday, I want you to know that you are not just loved — you are <em>celebrated</em>, by every star that will ever shine.</p>
+      <p>The universe has been orbiting you all along. It always will.</p>
+    </div>
+    <div class="tl-sign">Forever yours<br><span id="tlDate">— across all of space-time —</span></div>
+  </div>
+  <button class="cosmos-btn" style="margin-top:2rem" onclick="go(5)">Make a wish →</button>
+</section>
+
+<!-- ══ SEC 5 — WISHING STAR ══ -->
+<section class="sec" id="s5">
+  <canvas id="wishCanvas"></canvas>
+  <div class="wish-front">
+    <h2 class="wish-title">Wishing Star</h2>
+    <p class="wish-sub">Send your wish across the universe</p>
+    <div class="wish-field-wrap">
+      <input class="wish-input" id="wishInput" placeholder="Type a wish and press Enter…" maxlength="60">
+      <button class="wish-btn" onclick="sendWish()">✦ Launch</button>
+    </div>
+    <div class="wishes-display" id="wishesDisplay"></div>
+    <button class="cosmos-btn" style="margin-top:1rem" onclick="go(6)">Hear the pulsar →</button>
+  </div>
+</section>
+
+<!-- ══ SEC 6 — MUSIC PULSAR ══ -->
+<section class="sec" id="s6">
+  <div class="music-slideshow" id="musicSlideshow">
+    <div class="ring3d" id="slideContainer"></div>
+  </div>
+  <div class="bulb-row" id="bulbRow"></div>
+  <div class="pulsar-ring-wrap">
+    <div class="pulsar-rings"><span></span><span></span><span></span></div>
+    <button class="play-orb" id="playOrb" onclick="toggleMusic()">▶</button>
+  </div>
+  <p class="music-label">Birthday Pulsar</p>
+  <p class="music-hint" id="musicTitle">Click to play Happy Birthday!</p>
+  <button class="lights-btn" onclick="toggleLights()">Toggle Starlight</button>
+  <button class="cosmos-btn sec-btn" onclick="go(7)">The Grand Finale →</button>
+  <audio id="audio" loop>
+    <source src="media/HBD2.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="letterAudio" loop>
+    <source src="media/soft2.mp3" type="audio/mpeg">
+  </audio>
+</section>
+
+<!-- ══ SEC 7 — SUPERNOVA FINALE ══ -->
+<section class="sec" id="s7">
+  <canvas id="novaCanvas"></canvas>
+  <div class="nova-front">
+    <p class="nova-big">You.</p>
+    <p class="nova-name">✦ &nbsp; Happy Birthday &nbsp; ✦</p>
+    <p class="nova-msg">You are not a small thing in a big universe. You are the reason the universe bothers to keep expanding — to make room for everything wonderful you're yet to become.</p>
+    <p class="nova-from">With all the stars in the sky,<br><em>made for you, always</em></p>
+    <button class="restart-btn" onclick="go(0)">← Return to the beginning</button>
+  </div>
+</section>
+
+<script>
+
+const BDAY_MONTH = 06; // 1-12
+const BDAY_DAY   = 01;
+const BDAY_YEAR  = 2026; // Optional, only needed for countdown accuracy
+
+/* ══════════════════════════════════════════════════
+   BACKGROUND — COSMOS STARFIELD
+══════════════════════════════════════════════════ */
+(function(){
+  const cv = document.getElementById('cosmosCanvas');
+  const ctx = cv.getContext('2d');
+  const resize = () => { cv.width = innerWidth; cv.height = innerHeight; };
+  resize(); window.addEventListener('resize', resize);
+  const stars = Array.from({length:340}, () => ({
+    x:Math.random(), y:Math.random(),
+    r:.3+Math.random()*1.5,
+    speed:.15+Math.random()*.8,
+    phase:Math.random()*Math.PI*2,
+    col:['#e8f4ff','#c8d8f0','#f5c842','#b084ff','#4ecdc4'][Math.floor(Math.random()*5)]
+  }));
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    const t = Date.now()/1000;
+    stars.forEach(s=>{
+      const a = .15+.7*((.5+.5*Math.sin(t*s.speed+s.phase)));
+      ctx.beginPath(); ctx.arc(s.x*cv.width,s.y*cv.height,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.col; ctx.globalAlpha=a; ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* AURORA */
+(function(){
+  const cv = document.getElementById('auroraCanvas');
+  const ctx = cv.getContext('2d');
+  const resize = ()=>{cv.width=innerWidth;cv.height=innerHeight;};
+  resize(); window.addEventListener('resize',resize);
+  const bands=[
+    {y:.12,c1:'rgba(176,132,255,',c2:'rgba(78,205,196,',ph:0,sp:.35},
+    {y:.22,c1:'rgba(78,205,196,',c2:'rgba(245,200,66,',ph:1.2,sp:.28},
+    {y:.07,c1:'rgba(255,107,107,',c2:'rgba(176,132,255,',ph:2.4,sp:.45},
+  ];
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    const t = Date.now()/3000;
+    bands.forEach(b=>{
+      const w=Math.sin(t*b.sp+b.ph);
+      const cy=cv.height*(b.y+.04*w), h=90+55*Math.abs(w);
+      const g=ctx.createLinearGradient(0,cy-h,0,cy+h);
+      const a=.055+.035*Math.abs(w);
+      g.addColorStop(0,b.c1+'0)'); g.addColorStop(.5,b.c2+a+')'); g.addColorStop(1,b.c1+'0)');
+      ctx.fillStyle=g; ctx.fillRect(0,cy-h,cv.width,h*2);
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ══════════════════════════════════════════════════
+   SECTION ENGINE + NAV LOCKING
+══════════════════════════════════════════════════ */
+const SECS = ['s0','s1','s2','s3','s4','s5','s6','s7'];
+// NAV LABELS
+const NAV_LABELS = ['Intro','Your Stars','Observatory','Memories','Letter','Wishes','Music','Finale'];
+// Special lock: Observatory (idx 2) needs countdown finished
+// Sections unlock one-by-one as visited
+let cur = 0;
+// visited[i] = true once user has been to section i via go()
+const visited = [true, false, false, false, false, false, false, false];
+// unlockedNext[i] = true means button for section i+1 is available
+// Rule: section i+1 unlocks when user visits section i
+// Exception: section 3 (Memories) unlocks only when countdown done AND visited observatory
+let cdFinished = false;
+
+const curtain = document.getElementById('curtain');
+const navBar  = document.getElementById('navBar');
+const nbs     = document.querySelectorAll('.nb');
+const lockToast = document.getElementById('lockToast');
+let toastTimer = null;
+
+function showToast(msg){
+  lockToast.textContent = msg || '🔒 Complete the current page first';
+  lockToast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>lockToast.classList.remove('show'), 2400);
+}
+
+function canGoTo(idx){
+  if(idx === 0) return true;
+  // Can only go to a section if the previous one was visited
+  if(!visited[idx - 1]) return false;
+  // Observatory → Memories gate: countdown must be done
+  if(idx === 3 && !cdFinished) return false;
+  return true;
+}
+
+function go(idx){
+  if(idx === cur) return;
+  if(!canGoTo(idx)){
+    if(idx === 3 && !cdFinished){
+      showToast('⏳ The Memory Nebula opens on your birthday!');
+    } else {
+      showToast('🔒 Journey through each page to unlock the next');
+    }
+    return;
+  }
+  if(idx === 0 && musicOn){const audio=document.getElementById('audio');audio.pause();const orb=document.getElementById('playOrb'),title=document.getElementById('musicTitle'),ring=document.getElementById('slideContainer');orb.textContent='▶';orb.classList.remove('playing');title.textContent='Click to play Happy Birthday!';musicOn=false;ring.classList.remove('playing');}
+  if(idx !== 4){const letterAudio=document.getElementById('letterAudio');letterAudio.pause();}
+  curtain.classList.add('show');
+  setTimeout(()=>{
+    document.getElementById(SECS[cur]).classList.remove('vis');
+    cur = idx;
+    visited[idx] = true;
+    const el = document.getElementById(SECS[cur]);
+    el.classList.add('vis');
+    onEnter(cur);
+    syncNav();
+    navBar.style.display = cur > 0 ? 'flex' : 'none';
+    curtain.classList.remove('show');
+  }, 440);
+}
+
+function syncNav(){
+  nbs.forEach((b, i) => {
+    b.classList.remove('on','unlocked','locked');
+    if(i === cur){
+      b.classList.add('on','unlocked');
+      b.style.opacity = '1';
+      b.style.cursor = 'pointer';
+    } else if(canGoTo(i)){
+      b.classList.add('unlocked');
+      b.style.opacity = visited[i] ? '.55' : '.28';
+      b.style.cursor = 'pointer';
+    } else {
+      b.classList.add('locked');
+      b.style.opacity = '.14';
+      b.style.cursor = 'not-allowed';
+    }
+  });
+}
+nbs.forEach((b, i) => b.addEventListener('click', () => {
+  if(b.classList.contains('locked')){
+    if(i === 3 && !cdFinished) showToast('⏳ Unlocks when the countdown reaches zero!');
+    else showToast('🔒 Journey through each page to unlock');
+  } else { go(i); }
+}));
+
+/* ══════════════════════════════════════════════════
+   ZODIAC DATA
+══════════════════════════════════════════════════ */
+const ZODIAC = [
+  {
+    name:'Capricorn', symbol:'♑', dates:'Dec 22 – Jan 19',
+    element:'Earth 🜃', ruling:'Saturn ♄',
+    traits:['Ambitious','Disciplined','Patient','Loyal','Determined'],
+    fact1:'<strong>Ruling Planet:</strong> Saturn — the planet of wisdom, time, and mastery.',
+    fact2:'<strong>Cosmic Gift:</strong> You build empires quietly. Mountains were made for you to climb.',
+    stars:[{x:150,y:60},{x:110,y:100},{x:80,y:140},{x:95,y:180},{x:130,y:200},{x:170,y:185},{x:200,y:210},{x:220,y:175},{x:210,y:135},{x:185,y:105},{x:155,y:88}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,0]]
+  },
+  {
+    name:'Aquarius', symbol:'♒', dates:'Jan 20 – Feb 18',
+    element:'Air 🜁', ruling:'Uranus ⛢',
+    traits:['Visionary','Independent','Original','Humanitarian','Witty'],
+    fact1:'<strong>Ruling Planet:</strong> Uranus — the planet of revolution, innovation, and awakening.',
+    fact2:'<strong>Cosmic Gift:</strong> You see the future before it arrives. You are the spark that lights change.',
+    stars:[{x:70,y:100},{x:120,y:80},{x:170,y:95},{x:220,y:80},{x:240,y:120},{x:210,y:155},{x:160,y:150},{x:130,y:170},{x:90,y:160},{x:75,y:135}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,0],[2,6]]
+  },
+  {
+    name:'Pisces', symbol:'♓', dates:'Feb 19 – Mar 20',
+    element:'Water 🜄', ruling:'Neptune ♆',
+    traits:['Intuitive','Empathetic','Creative','Dreamy','Compassionate'],
+    fact1:'<strong>Ruling Planet:</strong> Neptune — the planet of dreams, illusion, and deep feeling.',
+    fact2:'<strong>Cosmic Gift:</strong> You feel the universe\'s heartbeat. Art, love, and magic flow through you.',
+    stars:[{x:100,y:70},{x:150,y:55},{x:200,y:70},{x:220,y:110},{x:195,y:150},{x:150,y:165},{x:105,y:150},{x:80,y:110},{x:100,y:70}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,0],[1,5]]
+  },
+  {
+    name:'Aries', symbol:'♈', dates:'Mar 21 – Apr 19',
+    element:'Fire 🜂', ruling:'Mars ♂',
+    traits:['Brave','Passionate','Confident','Pioneering','Energetic'],
+    fact1:'<strong>Ruling Planet:</strong> Mars — the planet of action, desire, and raw courage.',
+    fact2:'<strong>Cosmic Gift:</strong> You were born to lead. The universe gave you fire so you could light the way.',
+    stars:[{x:150,y:50},{x:120,y:90},{x:90,y:130},{x:150,y:150},{x:210,y:130},{x:180,y:90},{x:150,y:50}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[1,5],[2,4]]
+  },
+  {
+    name:'Taurus', symbol:'♉', dates:'Apr 20 – May 20',
+    element:'Earth 🜃', ruling:'Venus ♀',
+    traits:['Reliable','Patient','Devoted','Sensual','Determined'],
+    fact1:'<strong>Ruling Planet:</strong> Venus — the planet of beauty, love, and abundance.',
+    fact2:'<strong>Cosmic Gift:</strong> You turn the world beautiful simply by existing in it.',
+    stars:[{x:80,y:90},{x:130,y:65},{x:185,y:70},{x:220,y:100},{x:200,y:140},{x:160,y:160},{x:120,y:155},{x:90,y:135},{x:80,y:90}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,0],[2,6]]
+  },
+  {
+    name:'Gemini', symbol:'♊', dates:'May 21 – Jun 20',
+    element:'Air 🜁', ruling:'Mercury ☿',
+    traits:['Curious','Adaptable','Witty','Expressive','Playful'],
+    fact1:'<strong>Ruling Planet:</strong> Mercury — the planet of communication, thought, and speed.',
+    fact2:'<strong>Cosmic Gift:</strong> Two souls, infinite depth. You contain multitudes — and every one of them is brilliant.',
+    stars:[{x:100,y:60},{x:100,y:120},{x:100,y:180},{x:200,y:60},{x:200,y:120},{x:200,y:180},{x:100,y:120},{x:200,y:120}],
+    edges:[[0,1],[1,2],[3,4],[4,5],[0,3],[1,4],[2,5]]
+  },
+  {
+    name:'Cancer', symbol:'♋', dates:'Jun 21 – Jul 22',
+    element:'Water 🜄', ruling:'Moon ☽',
+    traits:['Nurturing','Intuitive','Loyal','Protective','Deeply loving'],
+    fact1:'<strong>Ruling Planet:</strong> The Moon — the celestial body of emotion, memory, and inner tides.',
+    fact2:'<strong>Cosmic Gift:</strong> Your heart is a home for everyone lucky enough to be loved by you.',
+    stars:[{x:150,y:50},{x:190,y:90},{x:200,y:140},{x:170,y:185},{x:130,y:185},{x:100,y:140},{x:110,y:90},{x:150,y:50}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,0],[0,3]]
+  },
+  {
+    name:'Leo', symbol:'♌', dates:'Jul 23 – Aug 22',
+    element:'Fire 🜂', ruling:'Sun ☉',
+    traits:['Generous','Charismatic','Creative','Warm','Regal'],
+    fact1:'<strong>Ruling Star:</strong> The Sun itself — the centre of our entire solar system.',
+    fact2:'<strong>Cosmic Gift:</strong> You were born to shine. The world literally orbits your warmth.',
+    stars:[{x:150,y:45},{x:200,y:75},{x:225,y:130},{x:195,y:180},{x:150,y:200},{x:105,y:180},{x:75,y:130},{x:100,y:75},{x:150,y:45}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,0],[0,4],[2,6]]
+  },
+  {
+    name:'Virgo', symbol:'♍', dates:'Aug 23 – Sep 22',
+    element:'Earth 🜃', ruling:'Mercury ☿',
+    traits:['Analytical','Kind','Hardworking','Practical','Devoted'],
+    fact1:'<strong>Ruling Planet:</strong> Mercury — the planet of detail, precision, and elegant thought.',
+    fact2:'<strong>Cosmic Gift:</strong> You notice what others miss. Your care is a form of love that moves mountains.',
+    stars:[{x:90,y:60},{x:140,y:50},{x:190,y:65},{x:220,y:105},{x:200,y:150},{x:155,y:170},{x:110,y:165},{x:80,y:130},{x:85,y:88},{x:90,y:60}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,0],[2,6]]
+  },
+  {
+    name:'Libra', symbol:'♎', dates:'Sep 23 – Oct 22',
+    element:'Air 🜁', ruling:'Venus ♀',
+    traits:['Harmonious','Fair','Charming','Idealistic','Diplomatic'],
+    fact1:'<strong>Ruling Planet:</strong> Venus — the planet of love, beauty, and balance.',
+    fact2:'<strong>Cosmic Gift:</strong> You bring peace to chaos. The universe breathes easier when you\'re in it.',
+    stars:[{x:60,y:140},{x:120,y:140},{x:180,y:140},{x:240,y:140},{x:70,y:100},{x:150,y:85},{x:230,y:100}],
+    edges:[[0,1],[1,2],[2,3],[4,5],[5,6],[1,5],[0,4],[3,6]]
+  },
+  {
+    name:'Scorpio', symbol:'♏', dates:'Oct 23 – Nov 21',
+    element:'Water 🜄', ruling:'Pluto ♇',
+    traits:['Intense','Perceptive','Magnetic','Determined','Passionate'],
+    fact1:'<strong>Ruling Planet:</strong> Pluto — the planet of transformation, power, and rebirth.',
+    fact2:'<strong>Cosmic Gift:</strong> You walk through darkness and come back holding light. You are transformation itself.',
+    stars:[{x:80,y:80},{x:120,y:60},{x:170,y:65},{x:215,y:85},{x:230,y:130},{x:210,y:170},{x:165,y:190},{x:120,y:185},{x:90,y:155},{x:75,y:115}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,0],[2,7]]
+  },
+  {
+    name:'Sagittarius', symbol:'♐', dates:'Nov 22 – Dec 21',
+    element:'Fire 🜂', ruling:'Jupiter ♃',
+    traits:['Adventurous','Optimistic','Honest','Philosophical','Free-spirited'],
+    fact1:'<strong>Ruling Planet:</strong> Jupiter — the largest planet; the planet of luck, wisdom, and expansion.',
+    fact2:'<strong>Cosmic Gift:</strong> The whole universe is your arrow\'s target. You were born to explore it all.',
+    stars:[{x:150,y:45},{x:200,y:100},{x:210,y:165},{x:150,y:200},{x:90,y:165},{x:100,y:100},{x:150,y:45}],
+    edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[0,3],[1,4]]
+  }
+];
+
+function getZodiac(month, day){
+  // month 1-12, day 1-31
+  if((month===12&&day>=22)||(month===1&&day<=19)) return ZODIAC[0];
+  if((month===1&&day>=20)||(month===2&&day<=18)) return ZODIAC[1];
+  if((month===2&&day>=19)||(month===3&&day<=20)) return ZODIAC[2];
+  if((month===3&&day>=21)||(month===4&&day<=19)) return ZODIAC[3];
+  if((month===4&&day>=20)||(month===5&&day<=20)) return ZODIAC[4];
+  if((month===5&&day>=21)||(month===6&&day<=20)) return ZODIAC[5];
+  if((month===6&&day>=21)||(month===7&&day<=22)) return ZODIAC[6];
+  if((month===7&&day>=23)||(month===8&&day<=22)) return ZODIAC[7];
+  if((month===8&&day>=23)||(month===9&&day<=22)) return ZODIAC[8];
+  if((month===9&&day>=23)||(month===10&&day<=22)) return ZODIAC[9];
+  if((month===10&&day>=23)||(month===11&&day<=21)) return ZODIAC[10];
+  return ZODIAC[11]; // Sagittarius
+}
+
+// ─── BIRTHDAY CONFIG — change these! ───
+// Using Dec 25 as placeholder; replace with actual birthday
+
+// ────────────────────────────────────────
+
+let zodiacStarsLit = 0;
+let zodiacTotalStars = 0;
+
+function initZodiac(){
+  const z = getZodiac(BDAY_MONTH, BDAY_DAY);
+  document.getElementById('zSignName').textContent = z.symbol + ' ' + z.name;
+  document.getElementById('zDates').textContent = z.dates + ' · ' + z.element + ' · ' + z.ruling;
+
+  const svg = document.getElementById('zodiacSvg');
+  // Clear previous content except defs
+  while(svg.children.length > 1) svg.removeChild(svg.lastChild);
+
+  zodiacTotalStars = z.stars.length;
+  zodiacStarsLit = 0;
+
+  // Background dim connection lines
+  const lineGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+  lineGroup.id = 'zLineGroup';
+  z.edges.forEach(([a,b])=>{
+    const ln = document.createElementNS('http://www.w3.org/2000/svg','line');
+    ln.setAttribute('x1',z.stars[a].x); ln.setAttribute('y1',z.stars[a].y);
+    ln.setAttribute('x2',z.stars[b].x); ln.setAttribute('y2',z.stars[b].y);
+    ln.setAttribute('stroke','rgba(176,132,255,.1)'); ln.setAttribute('stroke-width','1');
+    ln.setAttribute('stroke-dasharray','4 5');
+    ln.dataset.a = a; ln.dataset.b = b;
+    lineGroup.appendChild(ln);
+  });
+  svg.appendChild(lineGroup);
+
+  // Stars
+  const msgs = [
+    'The stars chose you.',
+    'Born under this sign…',
+    'The universe noticed.',
+    '✦ You are celestial.',
+    'Your light never fades.',
+    'Connected by starlight.',
+    'The sky remembers you.',
+    'Ancient light, new soul.',
+    'Written in the cosmos.',
+    'You belong to the stars.',
+  ];
+
+  const traits = z.traits;
+  const traitRow = document.getElementById('zTraitRow');
+  traitRow.innerHTML = '';
+  traits.forEach((t, i) => {
+    const span = document.createElement('span');
+    span.className = 'z-trait';
+    span.textContent = t;
+    traitRow.appendChild(span);
+  });
+
+  document.getElementById('zFact1').innerHTML = z.fact1;
+  document.getElementById('zFact2').innerHTML = z.fact2;
+  document.getElementById('zRevealMsg').textContent = 'Click the stars to reveal your cosmic profile…';
+  document.getElementById('zRevealMsg').classList.remove('show');
+  document.getElementById('zProgFill').style.width = '0%';
+
+  z.stars.forEach((n, i) => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('style','cursor:pointer');
+    g.dataset.idx = i;
+
+    // Glow halo
+    const halo = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    halo.setAttribute('cx',n.x); halo.setAttribute('cy',n.y); halo.setAttribute('r','14');
+    halo.setAttribute('fill','rgba(245,200,66,0)'); halo.setAttribute('style','transition:fill .3s');
+
+    // Star dot
+    const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    dot.setAttribute('cx',n.x); dot.setAttribute('cy',n.y); dot.setAttribute('r','4');
+    const baseCol = i%3===0?'#b084ff':(i%3===1?'#4ecdc4':'#c8d8f0');
+    dot.setAttribute('fill',baseCol); dot.setAttribute('style','transition:r .3s,fill .4s');
+    dot.setAttribute('filter','url(#starGlow)');
+
+    // Star number
+    const label = document.createElementNS('http://www.w3.org/2000/svg','text');
+    label.setAttribute('x',n.x); label.setAttribute('y',n.y-10);
+    label.setAttribute('text-anchor','middle'); label.setAttribute('font-size','9');
+    label.setAttribute('fill','rgba(200,216,240,.25)');
+    label.setAttribute('font-family','DM Mono, monospace');
+    label.textContent = i+1;
+
+    g.appendChild(halo); g.appendChild(dot); g.appendChild(label);
+
+    g.addEventListener('mouseenter',()=>{
+      halo.setAttribute('fill','rgba(245,200,66,.12)');
+      if(!dot.dataset.lit) dot.setAttribute('r','6');
+    });
+    g.addEventListener('mouseleave',()=>{
+      halo.setAttribute('fill','rgba(245,200,66,0)');
+      if(!dot.dataset.lit) dot.setAttribute('r','4');
+    });
+    g.addEventListener('click',()=>{
+      if(dot.dataset.lit) return;
+      dot.dataset.lit = '1';
+      dot.setAttribute('r','7'); dot.setAttribute('fill','#f5c842');
+      zodiacStarsLit++;
+
+      // Light up connected lines
+      document.querySelectorAll('#zLineGroup line').forEach(ln=>{
+        if(+ln.dataset.a===i||+ln.dataset.b===i){
+          const other = +ln.dataset.a===i ? +ln.dataset.b : +ln.dataset.a;
+          const otherDot = svg.querySelector(`g[data-idx="${other}"] circle:nth-child(2)`);
+          if(otherDot && otherDot.dataset.lit){
+            ln.setAttribute('stroke','rgba(176,132,255,.55)');
+            ln.setAttribute('stroke-dasharray','none');
+            ln.setAttribute('stroke-width','1.5');
+          }
+        }
+      });
+
+      // Update progress
+      const pct = Math.round(zodiacStarsLit/zodiacTotalStars*100);
+      document.getElementById('zProgFill').style.width = pct+'%';
+
+      // Reveal info progressively
+      const rm = document.getElementById('zRevealMsg');
+      rm.textContent = msgs[zodiacStarsLit % msgs.length];
+      rm.classList.remove('show'); rm.offsetHeight; rm.classList.add('show');
+
+      const traitSpans = traitRow.querySelectorAll('.z-trait');
+      if(zodiacStarsLit >= 1) traitSpans[0]?.classList.add('show');
+      if(zodiacStarsLit >= 2) traitSpans[1]?.classList.add('show');
+      if(zodiacStarsLit >= 3){ traitSpans[2]?.classList.add('show'); document.getElementById('zFact1').classList.add('show'); }
+      if(zodiacStarsLit >= 5){ traitSpans[3]?.classList.add('show'); }
+      if(zodiacStarsLit >= 7){ traitSpans[4]?.classList.add('show'); document.getElementById('zFact2').classList.add('show'); }
+
+      if(zodiacStarsLit === zodiacTotalStars){
+        rm.textContent = '✦ Your constellation is complete. The stars know your name. ✦';
+        document.getElementById('zHint').textContent = '✦ Constellation complete — your cosmic blueprint revealed';
+      }
+    });
+    svg.appendChild(g);
+  });
+}
+
+/* ══════════════════════════════════════════════════
+   COUNTDOWN
+══════════════════════════════════════════════════ */
+let cdInterval = null;
+
+function initCountdown(){
+  if(cdInterval) clearInterval(cdInterval);
+
+  const now = new Date();
+  let bday = new Date(BDAY_YEAR || now.getFullYear(), BDAY_MONTH-1, BDAY_DAY);
+  if(bday < now) bday = new Date(BDAY_YEAR || now.getFullYear() + 1, BDAY_MONTH-1, BDAY_DAY);
+
+  const notice = document.getElementById('obsLockNotice');
+  const arrived = document.getElementById('bdayArrived');
+
+  function tick(){
+    const n = new Date();
+    let diff = bday - n;
+    if(diff <= 0){
+      diff = 0;
+      cdFinished = true;
+      arrived.classList.add('show');
+      notice.style.display = 'none';
+      syncNav();
+      clearInterval(cdInterval);
+    } else {
+      arrived.classList.remove('show');
+      notice.style.display = 'flex';
+    }
+    const days  = Math.floor(diff/86400000);
+    const hours = Math.floor((diff%86400000)/3600000);
+    const mins  = Math.floor((diff%3600000)/60000);
+    const secs  = Math.floor((diff%60000)/1000);
+    document.getElementById('cdD').textContent = String(days).padStart(2,'0');
+    document.getElementById('cdH').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cdM').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cdS').textContent = String(secs).padStart(2,'0');
+  }
+  tick();
+  cdInterval = setInterval(tick, 1000);
+}
+
+/* ══════════════════════════════════════════════════
+   MEMORY NEBULA
+══════════════════════════════════════════════════ */
+const PHOTO_COUNT = 5;
+let nebGalleryDone = false;
+function initNebGallery(){
+  if(nebGalleryDone) return; nebGalleryDone = true;
+  const grid = document.getElementById('nebGrid');
+  for(let i=1;i<=PHOTO_COUNT;i++){
+    const slot = makeNSlot();
+    const img = document.createElement('img');
+    img.src = `media/${i}.jpg`; img.alt = `Memory ${i}`;
+    img.onerror = ()=>{ slot.removeChild(img); slot.innerHTML=`<span class="ngi">🌌</span><span class="ngt">Add a memory here</span>`; makeNUpload(slot); };
+    img.onclick = ()=>openNlb(img.src);
+    slot.appendChild(img); slot.appendChild(makeNDel(slot)); grid.appendChild(slot);
+  }
+  for(let i=0;i<4;i++){
+    const slot = makeNSlot();
+    slot.innerHTML=`<span class="ngi">✦</span><span class="ngt">Tap to add a memory</span>`;
+    makeNUpload(slot); grid.appendChild(slot);
+  }
+}
+function makeNSlot(){ const s=document.createElement('div');s.className='nslot';return s; }
+function makeNDel(slot){ const b=document.createElement('button');b.className='ndel';b.textContent='✕';b.onclick=e=>{e.stopPropagation();slot.innerHTML=`<span class="ngi">✦</span><span class="ngt">Tap to add a memory</span>`;makeNUpload(slot);};return b; }
+function makeNUpload(slot){ const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.style.display='none';inp.onchange=e=>{const f=e.target.files[0];if(!f)return;const url=URL.createObjectURL(f);slot.innerHTML='';const img=document.createElement('img');img.src=url;img.alt='memory';img.onclick=()=>openNlb(url);slot.appendChild(img);slot.appendChild(makeNDel(slot));};slot.appendChild(inp);slot.onclick=()=>{if(!slot.querySelector('img'))inp.click();}; }
+function openNlb(src){ document.getElementById('nlbImg').src=src; document.getElementById('nlb').classList.add('open'); }
+function closeNlb(){ document.getElementById('nlb').classList.remove('open'); }
+document.getElementById('nlb').addEventListener('click',e=>{if(e.target===e.currentTarget)closeNlb();});
+
+/* LETTER */
+function initLetter(){
+  const d = new Date();
+  document.getElementById('tlDate').textContent = d.toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('tlCoords').textContent = `COORDINATES · ${d.toISOString().split('T')[0]} · LAT ${(Math.random()*180-90).toFixed(4)}° · LON ${(Math.random()*360-180).toFixed(4)}°`;
+  const letter = document.querySelector('.telescope-letter');
+  letter.style.opacity='0';letter.style.animation='none';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ letter.style.animation='paperSlide .9s cubic-bezier(.34,1.56,.64,1) forwards'; }));
+}
+
+/* WISHING STAR */
+let wishCanvasInit = false;
+function initWishCanvas(){
+  if(wishCanvasInit) return; wishCanvasInit = true;
+  const cv = document.getElementById('wishCanvas');
+  cv.width=innerWidth; cv.height=innerHeight;
+  window.addEventListener('resize',()=>{cv.width=innerWidth;cv.height=innerHeight;});
+  const ctx = cv.getContext('2d');
+  const shooters = [];
+  function addShooter(){ shooters.push({x:Math.random()*cv.width,y:Math.random()*cv.height*.4,vx:4+Math.random()*6,vy:2+Math.random()*3,life:1}); }
+  setInterval(addShooter, 2200);
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(let i=shooters.length-1;i>=0;i--){
+      const s=shooters[i]; s.x+=s.vx; s.y+=s.vy; s.life-=.025;
+      if(s.life<=0){shooters.splice(i,1);continue;}
+      const g=ctx.createLinearGradient(s.x-s.vx*4,s.y-s.vy*4,s.x,s.y);
+      g.addColorStop(0,'rgba(245,200,66,0)'); g.addColorStop(1,`rgba(245,200,66,${s.life})`);
+      ctx.beginPath();ctx.moveTo(s.x-s.vx*4,s.y-s.vy*4);ctx.lineTo(s.x,s.y);
+      ctx.strokeStyle=g;ctx.lineWidth=2;ctx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+document.getElementById('wishInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendWish();});
+function sendWish(){
+  const inp=document.getElementById('wishInput'); const text=inp.value.trim(); if(!text)return; inp.value='';
+  const tag=document.createElement('div'); tag.className='wish-tag'; tag.textContent='✦ '+text;
+  document.getElementById('wishesDisplay').appendChild(tag); launchStar();
+}
+function launchStar(){
+  const el=document.createElement('div');
+  Object.assign(el.style,{position:'fixed',left:'50%',top:'60%',width:'3px',height:'3px',borderRadius:'50%',background:'#f5c842',boxShadow:'0 0 12px 4px rgba(245,200,66,.7)',zIndex:'9990',pointerEvents:'none'});
+  document.body.appendChild(el);
+  el.animate([{left:'50%',top:'60%',opacity:1},{left:Math.random()*innerWidth+'px',top:'-50px',opacity:0}],{duration:1200,easing:'cubic-bezier(.25,0,.6,1)',fill:'forwards'}).onfinish=()=>el.remove();
+}
+
+/* MUSIC */
+let lightsOn=false, musicOn=false;
+function initBulbs(){
+  const row=document.getElementById('bulbRow'); if(row.children.length)return;
+  for(let i=0;i<8;i++){const b=document.createElement('div');b.className='bulb';if(lightsOn)b.classList.add('lit');row.appendChild(b);}
+}
+function initSlideshow(){
+  const container=document.getElementById('slideContainer');
+  if(container.children.length>0) return;
+  const total=10;
+  const angleStep=360/total;
+  for(let i=0;i<total;i++){
+    const panel=document.createElement('div');
+    panel.className='panel';
+    const img=document.createElement('img');
+    img.src=`media/${(i%5)+1}.jpg`;
+    img.alt=`Memory ${i+1}`;
+    img.onerror=()=>panel.style.display='none';
+    panel.appendChild(img);
+    panel.style.transform=`rotateY(${i*angleStep}deg) translateZ(420px)`;
+    container.appendChild(panel);
+  }
+}
+function toggleMusic(){
+  const audio=document.getElementById('audio'),orb=document.getElementById('playOrb'),title=document.getElementById('musicTitle'),ring=document.getElementById('slideContainer');
+  if(!musicOn){
+    initSlideshow();
+    audio.play().catch(()=>{});
+    orb.textContent='⏸';orb.classList.add('playing');title.textContent='♫ Playing — Happy Birthday! ♫';musicOn=true;
+    lightsOn=true;document.querySelectorAll('.bulb').forEach(b=>b.classList.add('lit'));
+    ring.classList.add('playing');
+  } else {
+    audio.pause();orb.textContent='▶';orb.classList.remove('playing');title.textContent='Click to play Happy Birthday!';musicOn=false;
+    ring.classList.remove('playing');
+  }
+}
+function toggleLights(){lightsOn=!lightsOn;document.querySelectorAll('.bulb').forEach(b=>b.classList.toggle('lit',lightsOn));}
+
+/* SUPERNOVA */
+let novaInit=false;
+function initNova(){
+  if(novaInit)return; novaInit=true;
+  const cv=document.getElementById('novaCanvas'),ctx=cv.getContext('2d');
+  cv.width=innerWidth;cv.height=innerHeight;
+  window.addEventListener('resize',()=>{cv.width=innerWidth;cv.height=innerHeight;});
+  const COLS=['#f5c842','#b084ff','#4ecdc4','#ff6b9d','#e8f4ff','#ffd700','#ff6b6b','#90e0ef'];
+  const particles=[],rockets=[];
+  class P{constructor(x,y,vx,vy,col,r=2){this.x=x;this.y=y;this.vx=vx;this.vy=vy;this.col=col;this.r=r;this.life=1;}update(){this.x+=this.vx;this.y+=this.vy;this.vy+=.07;this.vx*=.98;this.life-=.014;}draw(){ctx.save();ctx.globalAlpha=Math.max(0,this.life);ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.col;ctx.fill();ctx.restore();}}
+  class R{constructor(){this.x=cv.width/2+(Math.random()-.5)*cv.width*.5;this.y=cv.height;this.tx=cv.width*.15+Math.random()*cv.width*.7;this.ty=cv.height*.08+Math.random()*cv.height*.45;const a=Math.atan2(this.ty-this.y,this.tx-this.x),sp=12+Math.random()*5;this.vx=Math.cos(a)*sp;this.vy=Math.sin(a)*sp;this.col=COLS[Math.floor(Math.random()*COLS.length)];this.trail=[];this.done=false;}update(){this.trail.push({x:this.x,y:this.y});if(this.trail.length>12)this.trail.shift();this.x+=this.vx;this.y+=this.vy;this.vy+=.13;if(this.vy>=0&&!this.done)this.explode();}explode(){this.done=true;const n=100+Math.floor(Math.random()*60);for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,sp=2+Math.random()*7;particles.push(new P(this.x,this.y,Math.cos(a)*sp,Math.sin(a)*sp,this.col,1.5+Math.random()*2.5));}}draw(){this.trail.forEach((t,i)=>{ctx.save();ctx.globalAlpha=(i/this.trail.length)*.5;ctx.beginPath();ctx.arc(t.x,t.y,2,0,Math.PI*2);ctx.fillStyle=this.col;ctx.fill();ctx.restore();});ctx.beginPath();ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fillStyle=this.col;ctx.fill();}}
+  let timer=0;
+  function loop(){requestAnimationFrame(loop);ctx.fillStyle='rgba(2,4,10,.16)';ctx.fillRect(0,0,cv.width,cv.height);timer++;if(timer%55===0)rockets.push(new R());for(let i=rockets.length-1;i>=0;i--){rockets[i].update();rockets[i].draw();if(rockets[i].done)rockets.splice(i,1);}for(let i=particles.length-1;i>=0;i--){particles[i].update();particles[i].draw();if(particles[i].life<=0)particles.splice(i,1);}}
+  for(let i=0;i<6;i++)setTimeout(()=>rockets.push(new R()),i*300);
+  loop();
+  cv.addEventListener('click',e=>{const r=cv.getBoundingClientRect();for(let i=0;i<3;i++)rockets.push(new R());});
+}
+
+/* ON ENTER */
+function onEnter(idx){
+  if(idx===1) initZodiac();
+  if(idx===2) initCountdown();
+  if(idx===3) initNebGallery();
+  if(idx===4) {initLetter();if(musicOn){const audio=document.getElementById('audio');audio.pause();const orb=document.getElementById('playOrb'),title=document.getElementById('musicTitle');orb.textContent='▶';orb.classList.remove('playing');title.textContent='Click to play Happy Birthday!';musicOn=false;}const letterAudio=document.getElementById('letterAudio');letterAudio.play().catch(()=>{});}
+  if(idx===5) initWishCanvas();
+  if(idx===6) initBulbs();
+  if(idx===7) initNova();
+}
+
+/* VERSION SWITCHER */
+function switchVersion(v){
+  if(v==='classic'){
+    document.getElementById('curtain').classList.add('show');
+    setTimeout(()=>{window.location.href='index.html';},450);
+  }
+  document.querySelectorAll('.vtab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.vtab')[v==='cosmos'?1:0].classList.add('on');
+}
+
+// Init nav state
+syncNav();
+</script>
+</body>
+</html>
